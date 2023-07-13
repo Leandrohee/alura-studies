@@ -1,27 +1,23 @@
 import style from './style.module.scss'
+import Item from './item/item'
+import {useState} from 'react'
 
-export default function Lista() {
+export default function Lista({tarefas}: {tarefas:any}) {
 
-    const tarefas = [
-       {
-        titulo: "React",
-        tempo: "02:00:00"
-       },
-       {
-        titulo: "Javascript",
-        tempo: "01:00:00"
-       },
-    ]
+    console.log(tarefas)
 
     return (
         <aside className={style.listaTarefas}>
-            <h2>Estudo do dia</h2>
+            <h2>
+                Estudo do dia
+            </h2>
             <ul>
-                {tarefas.map((elemento,index)=>(
-                    <li key={index} className={style.item}>
-                        <h3>{elemento.titulo}</h3>
-                        <span>{elemento.tempo}</span>
-                    </li>
+                {tarefas.map((elemento:any,index:number)=>(
+                    <Item 
+                        key={index} 
+                        titulo={elemento.titulo} 
+                        tempo={elemento.tempo}
+                    />
                 ))}
             </ul>
         </aside>
