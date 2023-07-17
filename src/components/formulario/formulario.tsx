@@ -2,22 +2,22 @@ import Botao from "../botao/botao";
 import style from './style.module.scss'
 import {useState} from 'react'
 
-export default function Formulario({alista}: {alista?:any}) {
+export default function Formulario({addlista}: {addlista?:any}) {
     
     const [novatarefa,setNovaTarefa] = useState("")
     const [novotempo,setNovoTempo] = useState("00:00")
 
 
-    function addNovaTarefa(e:React.FormEvent,ntarefa:string,ntempo:string){
+    function enviaNovaTarefa(e:React.FormEvent,ntarefa:string,ntempo:string){
         e.preventDefault()
-        alista(ntarefa,ntempo)
+        addlista(ntarefa,ntempo)
     }
 
     console.log("formulario renderizado")
     return (
         <form 
             className={style.novaTarefa}
-            onSubmit={(e)=>addNovaTarefa(e,novatarefa,novotempo)}
+            onSubmit={(e)=>enviaNovaTarefa(e,novatarefa,novotempo)}
         >
             <div className={style.inputContainer}>
                 <label htmlFor="tarefa">Adicione um novo estudo</label>
@@ -46,7 +46,7 @@ export default function Formulario({alista}: {alista?:any}) {
                 />
             </div>
             <Botao>
-                Botão
+                Adicionar
             </Botao>
         </form>
     )

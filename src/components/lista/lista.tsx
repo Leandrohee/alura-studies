@@ -1,10 +1,11 @@
 import style from './style.module.scss'
 import Item from './item/item'
-import {useState} from 'react'
 
-export default function Lista({tarefas}: {tarefas:any}) {
+export default function Lista({tarefas,enviaId}: {tarefas:any,enviaId:any}) {
 
-    console.log(tarefas)
+    function RecebeId(id:any){
+        enviaId(id)
+    }
 
     return (
         <aside className={style.listaTarefas}>
@@ -14,9 +15,13 @@ export default function Lista({tarefas}: {tarefas:any}) {
             <ul>
                 {tarefas.map((elemento:any,index:number)=>(
                     <Item 
-                        key={index} 
+                        id = {elemento.id}
+                        key={elemento.id} 
                         titulo={elemento.titulo} 
                         tempo={elemento.tempo}
+                        clicado ={elemento.clicado}
+                        completado={elemento.completado}
+                        enviaId={(id:any)=> RecebeId(id)}
                     />
                 ))}
             </ul>
